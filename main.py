@@ -1,6 +1,5 @@
-import tkinter as tk
-from tkinter import ttk
-from caricatore_giocatori import carica_giocatori_da_excel
+import customtkinter as Ctk
+#from caricatore_giocatori import carica_giocatori_da_excel
 
 # 1. Caricamento della Lista dei Giocatori
 #file_pathAP = 'c:/Users/GAR/Documents/FANTA_PROVA/'
@@ -13,9 +12,7 @@ from caricatore_giocatori import carica_giocatori_da_excel
     # Puoi aggiungere qui la logica per visualizzare la lista dei giocatori nell'interfaccia
 
 # 3. Creazione della Finestra Principale della GUI
-root = tk.Tk()
-s = ttk.Style()
-s.theme_use('clam')
+root = Ctk.CTk()
 root.title("Savoia Tool - By Gabbo")
 
 ## Creazione di un'etichetta e un pulsante
