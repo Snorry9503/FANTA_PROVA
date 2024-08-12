@@ -210,7 +210,8 @@ def popolaDatabase(
    cursor = conn.cursor()
    if nometabella == 'giocatoriac':
       cursor.execute('''
-        INSERT INTO giocatoriac ( id,
+        INSERT INTO giocatoriac ( 
+                id,
                 ruolo,
                 ruoloMantra,
                 nome,
@@ -255,7 +256,8 @@ def popolaDatabase(
       conn.close()
    elif nometabella == 'giocatoriap':
       cursor.execute('''
-        INSERT INTO giocatoriap ( id,
+        INSERT INTO giocatoriap ( 
+                id,
                 ruolo,
                 ruoloMantra,
                 nome,
@@ -304,3 +306,6 @@ def cancellaDatabase(nomedb):
 
    cursor.execute(''' TRUNCATE TABLE giocatoriap''')
    cursor.execute(''' TRUNCATE TABLE giocatoriac''')
+
+   conn.commit()
+   conn.close()
