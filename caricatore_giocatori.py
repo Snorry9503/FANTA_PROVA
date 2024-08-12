@@ -114,7 +114,7 @@ def caricaGiocatore(directory_path):
         elif rowAC[0] != rowAP[0] & rowAC:
            continue
 
-def creaGiocatoriDatabase():
+def creaGiocatoriDatabase(directory_path):
    statAC = openpyxl.load_workbook(f"{directory_path}/StatisticheAC.xlsx")
    statAP = openpyxl.load_workbook(f"{directory_path}/StatisticheAP.xlsx")
    quotAC = openpyxl.load_workbook(f"{directory_path}/QuotazioniAC.xlsx")
