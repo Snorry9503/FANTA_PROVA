@@ -1,4 +1,5 @@
 import openpyxl
+import sqlite3
 
 class Calciatore:
    
@@ -57,7 +58,7 @@ class Calciatore:
 
 
 
-
+'''
 def caricaGiocatore(directory_path):
    #Caricamento directory Padre Excel
 
@@ -113,5 +114,182 @@ def caricaGiocatore(directory_path):
             return nuoviGiocatori
         elif rowAC[0] != rowAP[0] & rowAC:
            continue
+'''
 
-            
+def creaGiocatoriDatabase():
+   statAC = openpyxl.load_workbook(f"{directory_path}/StatisticheAC.xlsx")
+   statAP = openpyxl.load_workbook(f"{directory_path}/StatisticheAP.xlsx")
+   quotAC = openpyxl.load_workbook(f"{directory_path}/QuotazioniAC.xlsx")
+   quotAP = openpyxl.load_workbook(f"{directory_path}/QuotazioniAP.xlsx")
+   
+   #Caricamento file foglio Excel
+   sheetStatAC = statAC.active
+   sheetStatAP = statAP.active
+   sheetQuotAC = quotAC.active
+   sheetQuotAP = quotAP.active   
+
+def crea_database(nome_db):
+    conn = sqlite3.connect(nome_db)
+    cursor = conn.cursor()
+    
+    # Creazione della tabella dei giocatori anno corrente
+    cursor.execute('''CREATE TABLE IF NOT EXISTS giocatoriac (
+	id INTEGER PRIMARY KEY ,
+    ruolo TEXT			,
+    ruoloMantra	 TEXT		,
+    nome		 TEXT		,
+    squadra		 TEXT		,
+    squadraFanta TEXT		,
+    pv			 INTEGER		,
+    mv			 INTEGER		,
+    fm			 INTEGER		,
+    gf			 INTEGER		,
+    gs			 INTEGER		,
+    rp			 INTEGER		,
+    rc			 INTEGER		,
+    rplus		 INTEGER		,
+    rminus		 INTEGER		,
+    assenze		 INTEGER		,
+    amm			 INTEGER		,
+    esp			 INTEGER		,
+    au           INTEGER)
+	 ''')
+    
+    # Creazione della tabella dei giocatori anno precedente
+    cursor.execute('''CREATE TABLE IF NOT EXISTS giocatoriap (
+	id INTEGER PRIMARY KEY ,
+    ruolo TEXT			,
+    ruoloMantra	 TEXT		,
+    nome		 TEXT		,
+    squadra		 TEXT		,
+    squadraFanta TEXT		,
+    pv			 INTEGER		,
+    mv			 INTEGER		,
+    fm			 INTEGER		,
+    gf			 INTEGER		,
+    gs			 INTEGER		,
+    rp			 INTEGER		,
+    rc			 INTEGER		,
+    rplus		 INTEGER		,
+    rminus		 INTEGER		,
+    assenze		 INTEGER		,
+    amm			 INTEGER		,
+    esp			 INTEGER		,
+    au           INTEGER)
+	 ''')
+    conn.commit()
+    conn.close()
+
+def popolaDatabase(
+      nomedb, 
+      nometabella,
+                id,
+                ruolo,
+                ruoloMantra,
+                nome,
+                squadra,
+                squadraFanta,
+                pv,
+                mv,
+                fm,
+                gf,
+                gs,
+                rp,
+                rc,
+                rplus,
+                rminus,
+                assenze,
+                amm,
+                esp,
+                au):
+   conn = sqlite3.connect(nomedb)
+   cursor = conn.cursor()
+   if nometabella == 'giocatoriac':
+      cursor.execute('''
+        INSERT INTO giocatoriac ( id,
+                ruolo,
+                ruoloMantra,
+                nome,
+                squadra,
+                squadraFanta,
+                pv,
+                mv,
+                fm,
+                gf,
+                gs,
+                rp,
+                rc,
+                rplus,
+                rminus,
+                assenze,
+                amm,
+                esp,
+                au)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                id,
+                ruolo,
+                ruoloMantra,
+                nome,
+                squadra,
+                squadraFanta,
+                pv,
+                mv,
+                fm,
+                gf,
+                gs,
+                rp,
+                rc,
+                rplus,
+                rminus,
+                assenze,
+                amm,
+                esp,
+                au))
+   
+   
+      conn.commit()
+      conn.close()
+   elif nometabella == 'giocatoriap':
+      cursor.execute('''
+        INSERT INTO giocatoriap ( id,
+                ruolo,
+                ruoloMantra,
+                nome,
+                squadra,
+                squadraFanta,
+                pv,
+                mv,
+                fm,
+                gf,
+                gs,
+                rp,
+                rc,
+                rplus,
+                rminus,
+                assenze,
+                amm,
+                esp,
+                au)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                id,
+                ruolo,
+                ruoloMantra,
+                nome,
+                squadra,
+                squadraFanta,
+                pv,
+                mv,
+                fm,
+                gf,
+                gs,
+                rp,
+                rc,
+                rplus,
+                rminus,
+                assenze,
+                amm,
+                esp,
+                au))
+   
+   conn.commit()
+   conn.close()   
