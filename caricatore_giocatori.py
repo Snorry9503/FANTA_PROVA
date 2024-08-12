@@ -185,8 +185,8 @@ def crea_database(nome_db):
     conn.close()
 
 def popolaDatabase(
-      nomedb, 
-      nometabella,
+                nomedb, 
+                nometabella,
                 id,
                 ruolo,
                 ruoloMantra,
