@@ -74,7 +74,7 @@ def caricaGiocatore(directory_path):
     
    nuoviGiocatori=[]
 
-   for rowAP in sheetStatAP.iter_rows(min_row=4, values_only=True):
+   for rowAP in sheetStatAP.iter_rows(min_row=3, values_only=True):
     for rowAC in sheetStatAC.iter_rows(min_row=3, values_only=True):
         if rowAC[0] == rowAP[0]:
             nuoviGiocatori.append(Calciatore(
