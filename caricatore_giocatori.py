@@ -58,7 +58,6 @@ class Calciatore:
 
 
 
-'''
 def caricaGiocatore(directory_path):
    #Caricamento directory Padre Excel
 
@@ -114,7 +113,6 @@ def caricaGiocatore(directory_path):
             return nuoviGiocatori
         elif rowAC[0] != rowAP[0] & rowAC:
            continue
-'''
 
 def creaGiocatoriDatabase():
    statAC = openpyxl.load_workbook(f"{directory_path}/StatisticheAC.xlsx")
