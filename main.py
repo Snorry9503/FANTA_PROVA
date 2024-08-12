@@ -1,3 +1,4 @@
+import tkinter as tk
 import customtkinter as Ctk
 #from caricatore_giocatori import carica_giocatori_da_excel
 
@@ -12,8 +13,18 @@ import customtkinter as Ctk
     # Puoi aggiungere qui la logica per visualizzare la lista dei giocatori nell'interfaccia
 
 # 3. Creazione della Finestra Principale della GUI
+Ctk.set_appearance_mode("Dark")
+
 root = Ctk.CTk()
+root.geometry("720x480")
 root.title("Savoia Tool - By Gabbo")
+label = Ctk.CTkLabel(master=root,
+                     text="FANTASAVOIA TOOL",
+                     width=120,
+                     height=25,
+                     corner_radius=8)
+label.place(relx=0.5, rely=0.5, anchor=tk.N)
+
 
 ## Creazione di un'etichetta e un pulsante
 #label = tk.Label(root, text="Lista Giocatori")
