@@ -297,3 +297,10 @@ def popolaDatabase(
    
    conn.commit()
    conn.close()   
+
+def cancellaDatabase(nomedb):
+   conn = sqlite3.connect(nomedb)
+   cursor = conn.cursor()
+
+   cursor.execute(''' TRUNCATE TABLE giocatoriap''')
+   cursor.execute(''' TRUNCATE TABLE giocatoriac''')
