@@ -1,5 +1,5 @@
 import tkinter as tk
-import customtkinter as Ctk
+import customtkinter as ctk
 #from caricatore_giocatori import carica_giocatori_da_excel
 
 # 1. Caricamento della Lista dei Giocatori
@@ -13,17 +13,41 @@ import customtkinter as Ctk
     # Puoi aggiungere qui la logica per visualizzare la lista dei giocatori nell'interfaccia
 
 # 3. Creazione della Finestra Principale della GUI
-Ctk.set_appearance_mode("Dark")
+# Configurazione base per customtkinter
+ctk.set_appearance_mode("dark")  # Modalità scura
+ctk.set_default_color_theme("blue")  # Tema colore blu
 
-root = Ctk.CTk()
-root.geometry("720x480")
-root.title("Savoia Tool - By Gabbo")
-label = Ctk.CTkLabel(master=root,
-                     text="FANTASAVOIA TOOL",
-                     width=120,
-                     height=25,
-                     corner_radius=8)
-label.place(relx=0.5, rely=0.5, anchor=tk.N)
+class FantaSavoiaApp(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+
+        # Configurazione della finestra principale
+        self.title("FANTASAVOIA TOOL")
+        self.geometry("600x400")
+
+        # Intestazione
+        self.header_label = ctk.CTkLabel(self, text="FANTASAVOIA TOOL", font=("Arial", 24, "bold"))
+        self.header_label.pack(pady=30)
+
+        # Bottone Sezione Asta
+        self.auction_button = ctk.CTkButton(self, text="Sezione Asta", font=("Arial", 18), command=self.open_auction_section, width=250, height=50)
+        self.auction_button.pack(pady=20)
+
+        # Bottone Sezione Admin
+        self.admin_button = ctk.CTkButton(self, text="Sezione Admin", font=("Arial", 18), command=self.open_admin_section, width=250, height=50)
+        self.admin_button.pack(pady=20)
+
+    def open_auction_section(self):
+        # Qui andrà il codice per aprire la sezione Asta
+        print('SezioneAsta')
+
+    def open_admin_section(self):
+        # Qui andrà il codice per aprire la sezione Admin
+         print('SezioneAdmin')
+
+if __name__ == "__main__":
+    app = FantaSavoiaApp()
+    app.mainloop()
 
 
 ## Creazione di un'etichetta e un pulsante
@@ -52,4 +76,3 @@ label.place(relx=0.5, rely=0.5, anchor=tk.N)
 #start_button.pack(pady=20)
 
 # 4. Avvio del Loop Principale dell'Interfaccia
-root.mainloop()
