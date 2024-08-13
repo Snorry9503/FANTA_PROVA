@@ -254,6 +254,7 @@ def popolaDatabase(
    
       conn.commit()
       conn.close()
+      
    elif nometabella == 'giocatoriap':
       cursor.execute('''
         INSERT INTO giocatoriap ( 

@@ -38,12 +38,33 @@ class FantaSavoiaApp(ctk.CTk):
         self.admin_button.pack(pady=20)
 
     def open_auction_section(self):
-        # Qui andrà il codice per aprire la sezione Asta
+    # Qui andrà il codice per aprire la sezione Asta
+        # Creare una nuova finestra per la Sezione Asta
+        auction_window = ctk.CTkToplevel(self)
+        auction_window.title("Sezione Asta")
+        auction_window.geometry("400x300")
+        
+        label = ctk.CTkLabel(auction_window, text="Benvenuto nella Sezione Asta", font=("Arial", 18))
+        label.pack(pady=20)
+
+        close_button = ctk.CTkButton(auction_window, text="Chiudi", command=auction_window.destroy)
+        close_button.pack(pady=20)
+        
         print('SezioneAsta')
 
     def open_admin_section(self):
         # Qui andrà il codice per aprire la sezione Admin
-         print('SezioneAdmin')
+        admin_window = ctk.CTkToplevel(self)
+        admin_window.title("Sezione Admin")
+        admin_window.geometry("400x300")
+
+        label = ctk.CTkLabel(admin_window, text="Benvenuto nella Sezione Admin", font=("Arial", 18))
+        label.pack(pady=20)
+
+        close_button = ctk.CTkButton(admin_window, text="Chiudi", command=admin_window.destroy)
+        close_button.pack(pady=20)
+        
+        print('SezioneAdmin')
 
 if __name__ == "__main__":
     app = FantaSavoiaApp()
