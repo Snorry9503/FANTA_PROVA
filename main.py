@@ -1,6 +1,9 @@
 import tkinter as tk
 import customtkinter as ctk
-#from caricatore_giocatori import carica_giocatori_da_excel
+
+
+#from caricatore_giocatori import
+# carica_giocatori_da_excel
 
 # 1. Caricamento della Lista dei Giocatori
 #file_pathAP = 'c:/Users/GAR/Documents/FANTA_PROVA/'
@@ -26,7 +29,7 @@ class FantaSavoiaApp(ctk.CTk):
         self.geometry("600x400")
 
         # Intestazione
-        self.header_label = ctk.CTkLabel(self, text="FANTASAVOIA TOOL", font=("Arial", 24, "bold"))
+        self.header_label = ctk.CTkLabel(self, text="FANTASAVOIA TOOL", font=("Arial", 36, "bold"))
         self.header_label.pack(pady=30)
 
         # Bottone Sezione Asta
@@ -46,7 +49,11 @@ class FantaSavoiaApp(ctk.CTk):
         
         label = ctk.CTkLabel(auction_window, text="Benvenuto nella Sezione Asta", font=("Arial", 18))
         label.pack(pady=20)
-
+        nome_utente= ctk.CTkEntry(auction_window, placeholder_text="Inserisci il nome utente")
+        nome_utente.pack(pady=20)
+        pass_word= ctk.CTkEntry(auction_window, placeholder_text="immetti password")
+        pass_word.pack(pady=20)
+        
         close_button = ctk.CTkButton(auction_window, text="Chiudi", command=auction_window.destroy)
         close_button.pack(pady=20)
         
@@ -60,6 +67,11 @@ class FantaSavoiaApp(ctk.CTk):
 
         label = ctk.CTkLabel(admin_window, text="Benvenuto nella Sezione Admin", font=("Arial", 18))
         label.pack(pady=20)
+
+        ingestdata_button = ctk.CTkButton(admin_window, text="Immetti Giocatori Anno corrente", font=("Arial", 18))
+        ingestdata_button.pack(pady=20)
+        ingestdata_buttonap = ctk.CTkButton(admin_window, text="Immetti Giocatori Anno precedente", font=("Arial", 18))
+        ingestdata_buttonap.pack(pady=20)
 
         close_button = ctk.CTkButton(admin_window, text="Chiudi", command=admin_window.destroy)
         close_button.pack(pady=20)
