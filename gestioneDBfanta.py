@@ -13,7 +13,6 @@ class Calciatore:
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -26,7 +25,8 @@ class Calciatore:
                 assenze,
                 amm,
                 esp,
-                au):
+                au,
+                squadraFanta):
     self.anno=anno    
     self.id=id
     self.ruolo = ruolo
