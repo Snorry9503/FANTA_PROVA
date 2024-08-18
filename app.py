@@ -21,7 +21,7 @@ def dbingest():
     giocatoriap=[]
 
     if count != 0:
-       giocatoriap=fdb.caricaGiocatoreAP       
+       giocatoriap=fdb.caricaGiocatoreAP("C:\Users\gabri\Desktop\FANTA_PROVA\statisticheAP.xlsx")       
 
        for r in giocatoriap:
           fdb.popolaDatabase('fantasavoia.db',
@@ -38,8 +38,14 @@ def dbingest():
                              giocatoriap.gf,
                              giocatoriap.gs,
                              giocatoriap.rp,
+                             giocatoriap.rc,
                              giocatoriap.rplus,
-                             giocatoriap.rplus)
+                             giocatoriap.rminus,
+                             giocatoriap.assenze,
+                             giocatoriap.amm,
+                             giocatoriap.esp,
+                             giocatoriap.au,
+                             '')
         
 
        return f"<p>numero giocatori presenti{count}</p>"
