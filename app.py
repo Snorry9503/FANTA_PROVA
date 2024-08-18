@@ -54,7 +54,7 @@ def dbingestAC():
     nome_db='fantasavoia.db'
     giocatoriac=[]
     
-    giocatoriac=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
+    giocatoriac=fdb.caricaGiocatoreAC('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
     #print(giocatoriap.id)      
     countgiro=0
     for r in giocatoriac:
@@ -95,8 +95,13 @@ def dbingestAC():
 def getGiocatore():
    return "<p>Ritorna il giocatore</p>"
 
-@app.route("/getGiocatori", methods=['GET'])
-def getGiocatori():
+@app.route("/getGiocatoriAC", methods=['GET'])
+def getGiocatoriAC():
+
+   return jsonify("staminchia")
+
+@app.route("/getGiocatoriAP", methods=['GET'])
+def getGiocatoriAP():
 
    return jsonify("staminchia")
 

@@ -327,3 +327,6 @@ def cancellaDatabase(nomedb):
 
    conn.commit()
    conn.close()
+
+def selectGiocatoriAC(nomedb):
+   
