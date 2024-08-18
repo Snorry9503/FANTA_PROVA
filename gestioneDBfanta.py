@@ -74,7 +74,6 @@ def caricaGiocatoreAP(directory_path):
                             rowAp[2],
                             rowAp[3],
                             rowAp[4],
-                            None,
                             rowAp[5],
                             rowAp[6],
                             rowAp[7],
@@ -88,10 +87,12 @@ def caricaGiocatoreAP(directory_path):
                             rowAp[15],
                             rowAp[16],
                             rowAp[17],
+                            None
                             ))
+      
     return giocatoriAp
    
-def caricaGiocatoreAP(directory_path):
+def caricaGiocatoreAC(directory_path):
    dataAnnoCalcistico=datetime.datetime.now()
    #Caricamento directory Padre Excel
 
@@ -137,49 +138,55 @@ def crea_database(nome_db):
     cursor = conn.cursor()
     
     # Creazione della tabella dei giocatori anno corrente
-    cursor.execute('''CREATE TABLE IF NOT EXISTS giocatoriac (
-	id INTEGER PRIMARY KEY ,
-    ruolo TEXT	    		,
-    ruoloMantra	 TEXT		,
-    nome		 TEXT		,
-    squadra		 TEXT		,
-    squadraFanta TEXT		,
-    pv			 INTEGER		,
-    mv			 INTEGER		,
-    fm			 INTEGER		,
-    gf			 INTEGER		,
-    gs			 INTEGER		,
-    rp			 INTEGER		,
-    rc			 INTEGER		,
-    rplus		 INTEGER		,
-    rminus		 INTEGER		,
-    assenze		 INTEGER		,
-    amm			 INTEGER		,
-    esp			 INTEGER		,
-    au           INTEGER)
+    cursor.execute('''CREATE TABLE "giocatoriac" (
+	"id"	INTEGER,
+	"ruolo"	TEXT,
+	"ruoloMantra"	TEXT,
+	"nome"	TEXT,
+	"squadra"	TEXT,
+	"pv"	INTEGER,
+	"mv"	INTEGER,
+	"fm"	INTEGER,
+	"gf"	INTEGER,
+	"gs"	INTEGER,
+	"rp"	INTEGER,
+	"rc"	INTEGER,
+	"rplus"	INTEGER,
+	"rminus"	INTEGER,
+	"assenze"	INTEGER,
+	"amm"	INTEGER,
+	"esp"	INTEGER,
+	"au"	BLOB,
+	"anno"	INTEGER,
+	"squadraFanta"	TEXT,
+	PRIMARY KEY("id")
+);)
 	 ''')
     
     # Creazione della tabella dei giocatori anno precedente
-    cursor.execute('''CREATE TABLE IF NOT EXISTS giocatoriap (
-	id INTEGER PRIMARY KEY ,
-    ruolo TEXT			,
-    ruoloMantra	 TEXT		,
-    nome		 TEXT		,
-    squadra		 TEXT		,
-    squadraFanta TEXT		,
-    pv			 INTEGER		,
-    mv			 INTEGER		,
-    fm			 INTEGER		,
-    gf			 INTEGER		,
-    gs			 INTEGER		,
-    rp			 INTEGER		,
-    rc			 INTEGER		,
-    rplus		 INTEGER		,
-    rminus		 INTEGER		,
-    assenze		 INTEGER		,
-    amm			 INTEGER		,
-    esp			 INTEGER		,
-    au           INTEGER)
+    cursor.execute('''CREATE TABLE "giocatoriap" (
+	"id"	INTEGER,
+	"ruolo"	TEXT,
+	"ruoloMantra"	TEXT,
+	"nome"	TEXT,
+	"squadra"	TEXT,
+	"pv"	INTEGER,
+	"mv"	INTEGER,
+	"fm"	INTEGER,
+	"gf"	INTEGER,
+	"gs"	INTEGER,
+	"rp"	INTEGER,
+	"rc"	INTEGER,
+	"rplus"	INTEGER,
+	"rminus"	INTEGER,
+	"assenze"	INTEGER,
+	"amm"	INTEGER,
+	"esp"	INTEGER,
+	"au"	BLOB,
+	"anno"	INTEGER,
+	"squadraFanta"	TEXT,
+	PRIMARY KEY("id")
+);
 	 ''')
     cursor.execute(
        '''CREATE TABLE IF NOT EXISTS squadreFanta (
@@ -195,12 +202,12 @@ def crea_database(nome_db):
 def popolaDatabase(
                 nomedb, 
                 nometabella,
+                anno,
                 id,
                 ruolo,
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -213,7 +220,9 @@ def popolaDatabase(
                 assenze,
                 amm,
                 esp,
-                au):
+                au,
+                squadraFanta
+):
    conn = sqlite3.connect(nomedb)
    cursor = conn.cursor()
    if nometabella == 'giocatoriac':
@@ -224,7 +233,6 @@ def popolaDatabase(
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -237,14 +245,15 @@ def popolaDatabase(
                 assenze,
                 amm,
                 esp,
-                au)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                au,
+                anno,
+                squadraFanta)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
                 id,
                 ruolo,
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -257,7 +266,9 @@ def popolaDatabase(
                 assenze,
                 amm,
                 esp,
-                au))
+                au,
+                anno,
+                squadraFanta))
    
    
       conn.commit()
@@ -271,7 +282,6 @@ def popolaDatabase(
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -284,14 +294,15 @@ def popolaDatabase(
                 assenze,
                 amm,
                 esp,
-                au)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                au,
+                anno,
+                squadraFanta)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
                 id,
                 ruolo,
                 ruoloMantra,
                 nome,
                 squadra,
-                squadraFanta,
                 pv,
                 mv,
                 fm,
@@ -304,7 +315,9 @@ def popolaDatabase(
                 assenze,
                 amm,
                 esp,
-                au))
+                au,
+                anno,
+                squadraFanta))
    
    conn.commit()
    conn.close()   
