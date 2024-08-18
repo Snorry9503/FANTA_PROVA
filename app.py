@@ -10,7 +10,7 @@ app=Flask(__name__)
 def index():
  return "<p>Indice, cosa vuoi ?</p>"
 
-@app.route("/dbIngest", method="[GET, POST]")
+@app.route("/dbIngest", method="[GET]")
 def dbingest():
     return "<p>codice Ingest database</p>"
 
