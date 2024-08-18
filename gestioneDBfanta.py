@@ -116,7 +116,6 @@ def caricaGiocatoreAC(directory_path):
                                 rowAC[2],
                                 rowAC[3],
                                 rowAC[4],
-                                None,
                                 rowAC[5],
                                 rowAC[6],
                                 rowAC[7],
@@ -130,6 +129,7 @@ def caricaGiocatoreAC(directory_path):
                                 rowAC[15],
                                 rowAC[16],
                                 rowAC[17],
+                                None
                                 ))
    return giocatoriAc
         
@@ -269,11 +269,7 @@ def popolaDatabase(
                 au,
                 anno,
                 squadraFanta))
-   
-   
-      conn.commit()
-      conn.close()
-      
+         
    elif nometabella == 'giocatoriap':
       cursor.execute('''
         INSERT INTO giocatoriap ( 
@@ -320,14 +316,14 @@ def popolaDatabase(
                 squadraFanta))
    
    conn.commit()
-   conn.close()   
+   ##conn.close()   
 
 def cancellaDatabase(nomedb):
    conn = sqlite3.connect(nomedb)
    cursor = conn.cursor()
 
-   cursor.execute(''' TRUNCATE TABLE giocatoriap''')
-   cursor.execute(''' TRUNCATE TABLE giocatoriac''')
+   cursor.execute(''' DELETE FROM giocatoriap''')
+   cursor.execute(''' DELETE FROM giocatoriac''')
 
    conn.commit()
    conn.close()

@@ -11,22 +11,18 @@ app=Flask(__name__)
 def index():
  return "<p>Indice, cosa vuoi ?</p>"
 
-@app.route("/dbIngest", methods=['GET','POST'])
-def dbingest():
+@app.route("/dbIngestAP", methods=['GET','POST'])
+def dbingestAP():
+    
     nome_db='fantasavoia.db'
-    conn = sqlite3.connect(nome_db)
-    cursor = conn.cursor()
-
-    count = cursor.execute('''SELECT COUNT(*) FROM giocatoriap''')
     giocatoriap=[]
-    print(count)
-
-    if count != 0:
-       giocatoriap=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
-       print(giocatoriap.id)      
-
-       for r in giocatoriap:
-          fdb.popolaDatabase('fantasavoia.db',
+    
+    giocatoriap=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
+    #print(giocatoriap.id)      
+    countgiro=0
+    for r in giocatoriap:
+       countgiro=countgiro+1
+       fdb.popolaDatabase(    nome_db,
                              'giocatoriap',
                              r.anno,
                              r.id,
@@ -48,11 +44,52 @@ def dbingest():
                              r.esp,
                              r.au,
                              '')
-        
+    return f"<p>numero giocatori immessi {countgiro}</p>"
+         
+    
 
-       return f"<p>numero giocatori presenti{count}</p>"
-    else:
-       return f"<p>numero giocatori presenti{count}</p>"
+@app.route("/dbIngestAC", methods=['GET','POST'])
+def dbingestAC():
+    
+    nome_db='fantasavoia.db'
+    giocatoriac=[]
+    
+    giocatoriac=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
+    #print(giocatoriap.id)      
+    countgiro=0
+    for r in giocatoriac:
+       countgiro=countgiro+1
+       fdb.popolaDatabase(    nome_db,
+                             'giocatoriac',
+                             r.anno,
+                             r.id,
+                             r.ruolo,
+                             r.ruoloMantra,
+                             r.nome,
+                             r.squadra,
+                             r.pv,
+                             r.mv,
+                             r.fm,
+                             r.gf,
+                             r.gs,
+                             r.rp,
+                             r.rc,
+                             r.rplus,
+                             r.rminus,
+                             r.assenze,
+                             r.amm,
+                             r.esp,
+                             r.au,
+                             '')
+    return f"<p>numero giocatori immessi {countgiro}</p>"
+         
+    
+
+   
+
+
+
+
 
 @app.route("/getGiocatore/<id>", methods=['GET'])
 def getGiocatore():
@@ -60,7 +97,8 @@ def getGiocatore():
 
 @app.route("/getGiocatori", methods=['GET'])
 def getGiocatori():
-   return "<p>Ritorna tutta la lista dei giocatori</p>"
+
+   return jsonify("staminchia")
 
 @app.route("/setSquadraFantaGiocatore/<id>", methods=['PUT'])
 def setFantaSquadra():
@@ -69,3 +107,13 @@ def setFantaSquadra():
 @app.route("/setIngaggioGiocatore/<id>", methods=['PUT'])
 def setIngaggioGiocarore():
    return "<p>Setta l'ingaggio che ha pagato il fantagiocatore per la squadra</p>"
+
+@app.route("/cancellaDB", methods=['GET', 'DELETE','POST'])
+def provaCursore():
+    
+    nome_db='fantasavoia.db'
+    fdb.cancellaDatabase(nome_db)
+
+    return "<h1> giocatori cancellati </h1>"
+    
+
