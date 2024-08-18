@@ -90,7 +90,7 @@ def caricaGiocatoreAP(directory_path):
                             None
                             ))
       
-    return giocatoriAp
+   return giocatoriAp
    
 def caricaGiocatoreAC(directory_path):
    dataAnnoCalcistico=datetime.datetime.now()
@@ -131,7 +131,7 @@ def caricaGiocatoreAC(directory_path):
                                 rowAC[16],
                                 rowAC[17],
                                 ))
-            return giocatoriAc
+   return giocatoriAc
         
 def crea_database(nome_db):
     conn = sqlite3.connect(nome_db)

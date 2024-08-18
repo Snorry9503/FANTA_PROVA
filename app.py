@@ -19,32 +19,34 @@ def dbingest():
 
     count = cursor.execute('''SELECT COUNT(*) FROM giocatoriap''')
     giocatoriap=[]
+    print(count)
 
     if count != 0:
-       giocatoriap=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA\\statisticheAP.xlsx')       
+       giocatoriap=fdb.caricaGiocatoreAP('C:\\Users\\gabri\\Desktop\\FANTA_PROVA')
+       print(giocatoriap.id)      
 
        for r in giocatoriap:
           fdb.popolaDatabase('fantasavoia.db',
                              'giocatoriap',
-                             giocatoriap.anno,
-                             giocatoriap.id,
-                             giocatoriap.ruolo,
-                             giocatoriap.ruoloMantra,
-                             giocatoriap.nome,
-                             giocatoriap.squadra,
-                             giocatoriap.pv,
-                             giocatoriap.mv,
-                             giocatoriap.fm,
-                             giocatoriap.gf,
-                             giocatoriap.gs,
-                             giocatoriap.rp,
-                             giocatoriap.rc,
-                             giocatoriap.rplus,
-                             giocatoriap.rminus,
-                             giocatoriap.assenze,
-                             giocatoriap.amm,
-                             giocatoriap.esp,
-                             giocatoriap.au,
+                             r.anno,
+                             r.id,
+                             r.ruolo,
+                             r.ruoloMantra,
+                             r.nome,
+                             r.squadra,
+                             r.pv,
+                             r.mv,
+                             r.fm,
+                             r.gf,
+                             r.gs,
+                             r.rp,
+                             r.rc,
+                             r.rplus,
+                             r.rminus,
+                             r.assenze,
+                             r.amm,
+                             r.esp,
+                             r.au,
                              '')
         
 
