@@ -95,15 +95,18 @@ def dbingestAC():
 def getGiocatore():
    return "<p>Ritorna il giocatore</p>"
 
-@app.route("/getGiocatoriAC", methods=['GET'])
-def getGiocatoriAC():
 
-   return jsonify("staminchia")
+@app.route("/getGiocatoriAC", methods=['GET'])
+def getALLGiocatoriAC():
+   nomedb='fantasavoia.db'
+   giocatoriAC=fdb.selectGiocatoriAC(nomedb)   
+   return jsonify(giocatoriAC)
 
 @app.route("/getGiocatoriAP", methods=['GET'])
-def getGiocatoriAP():
-
-   return jsonify("staminchia")
+def getALLGiocatoriAP():
+   nomedb='fantasavoia.db'
+   giocatoriAP=fdb.selectGiocatoriAP(nomedb)   
+   return jsonify(giocatoriAP)
 
 @app.route("/setSquadraFantaGiocatore/<id>", methods=['PUT'])
 def setFantaSquadra():

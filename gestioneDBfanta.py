@@ -328,5 +328,16 @@ def cancellaDatabase(nomedb):
    conn.commit()
    conn.close()
 
-def selectGiocatoriAC(nomedb):
-   
+def selectGiocatoriAC(nomedb): 
+   conn = sqlite3.connect(nomedb)
+   cursor = conn.cursor()
+   giocatoriAC=cursor.execute(''' SELECT * FROM GIOCATORIAC''')
+   giocatoriAC=cursor.fetchall()
+   return giocatoriAC
+
+def selectGiocatoriAP(nomedb): 
+   conn = sqlite3.connect(nomedb)
+   cursor = conn.cursor()
+   giocatoriAP=cursor.execute(''' SELECT * FROM GIOCATORIAP''')
+   giocatoriAP=cursor.fetchall()
+   return giocatoriAP
