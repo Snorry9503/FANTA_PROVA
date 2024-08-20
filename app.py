@@ -91,9 +91,12 @@ def dbingestAC():
 
 
 
-@app.route("/getGiocatore/<id>", methods=['GET'])
-def getGiocatore():
-   return "<p>Ritorna il giocatore</p>"
+@app.route("/getGiocatoreAC/<id>", methods=['GET'])
+def getGiocatore(id):
+   giocatore=fdb.selectGiocatoreIdAC('fantasavoia.db',id)
+   
+
+   return f"<p>Ritorna il giocatore {giocatore}</p>"
 
 
 @app.route("/getGiocatoriAC", methods=['GET'])

@@ -333,6 +333,8 @@ def selectGiocatoriAC(nomedb):
    cursor = conn.cursor()
    giocatoriAC=cursor.execute(''' SELECT * FROM GIOCATORIAC''')
    giocatoriAC=cursor.fetchall()
+   cursor.close()
+   conn.close()
    return giocatoriAC
 
 def selectGiocatoriAP(nomedb): 
@@ -340,4 +342,17 @@ def selectGiocatoriAP(nomedb):
    cursor = conn.cursor()
    giocatoriAP=cursor.execute(''' SELECT * FROM GIOCATORIAP''')
    giocatoriAP=cursor.fetchall()
+   cursor.close()
+   conn.close()
    return giocatoriAP
+   
+
+def selectGiocatoreIdAC(nomedb, id):
+   id=id
+   conn=sqlite3.connect(nomedb)
+   cursor = conn.cursor()
+   giocatoreRow=cursor.execute('SELECT * from GIOCATORIAC where id=?',(id,) )
+   giocatoreRow=cursor.fetchall()
+
+   return giocatoreRow
+
